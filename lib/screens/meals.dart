@@ -5,19 +5,21 @@ import 'package:meals_app/widgets/meal_item.dart';
 class MealsScreen extends StatelessWidget {
   const MealsScreen({
     super.key,
-    required this.title,
+    this.title,
     required this.meals,
   });
 
-  final String title;
+  final String? title;
   final List<Meal> meals;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
+      appBar: title != null
+          ? AppBar(
+              title: Text(title!),
+            )
+          : null,
       body: meals.isNotEmpty
           ? ListView.builder(
               itemCount: meals.length,
